@@ -10,139 +10,74 @@ df = pandas.read_csv("vectors.txt")
 
 from random import random, randrange
 
-# class Node:
-#     def __init__(self,coordinate,tag) :
-#         self.left=None
-#         self.right=None
-#         self.tag=tag
-#         self.isLeaf=True
-#         self.counter=0
-#         self.coordinate = coordinate
-#         self.matchTag=0
-#         self.dontMatchTag=0
+class Node:
+    def __init__(self,coordinate,tag) :
+        self.left=None
+        self.right=None
+        self.tag=tag
+        self.isLeaf=True
+        self.counter=0
+        self.coordinate = coordinate
+        self.matchTag=0
+        self.dontMatchTag=0
 
 class Tree:
 
     def __init__(self,tag,k):
-            self.left=None
-            self.right=None
-            self.tag=tag
-            self.isLeaf=True
-            self.counter=0
-            self.coordinate = randrange(8)
-            self.matchTag=0
-            self.dontMatchTag=0
-            self.k =k
-    # def printValues(self):
-    #     if self.root.left:
-    #         self.root.left.printValues()
-    #     print(self.root.tag)
-    #     if self.root.right:
-    #         self.root.right.printValues()
-    # def insert(self,Vector):
-    #             if Vector[self.coordinate] == 1:
-    #                 self.coordinate = randrange(8)
-    #                 print(1)
-    #                 print("coordinat is = {}".format(self.coordinate))
-    #                 self.left=Tree(1,self.k)
-    #                 self.isLeaf=False
-    #             else:
-    #                 self.coordinate = randrange(8)
-    #                 print(0)
-    #                 print("coordinat is = {}".format(self.coordinate))
-    #                 self.left=Tree(0,self.k)
-    #                 self.isLeaf=False
+            self.root = None
+            self.k=k
 
-    def insertQ1(self,Vector):
-        print(Vector)
-            # print("coordinat is = {}".format(self.coordinate))
-        if self.tag==-1:
-            if Vector[self.coordinate] == 1:
-                if self.right is None:
-                    print("coordinat is = {}".format(self.coordinate))
-                    self.coordinate = randrange(8)
-                    print(1) 
-                    self.right=Tree(1,self.k)
-                    self.isLeaf=False
-                else:
-                    self.right.insertQ1(Vector)
-            else:
-                if self.left is None:
-                    print("coordinat is = {}".format(self.coordinate))
-                    self.coordinate = randrange(8)
-                    print(0)
-                    self.left=Tree(0,self.k)
-                    self.isLeaf=False
-                else:
-                    self.left.insertQ1(Vector)
-        if self.tag==0:
-            if Vector[self.coordinate] == 1:
-                if self.right is None:
-                    print("coordinat is = {}".format(self.coordinate))
-                    self.coordinate = randrange(8)
-                    print(1) 
-                    self.right=Tree(1,self.k)
-                    self.isLeaf=False
-                else:
-                    self.right.insertQ1(Vector)
-            else:
-                if self.left is None:
-                    print("coordinat is = {}".format(self.coordinate))
-                    self.coordinate = randrange(8)
-                    print(0)
-                    self.left=Tree(0,self.k)
-                    self.isLeaf=False
-                else:
-                    self.left.insertQ1(Vector)  
-        if self.tag==1:
-            if Vector[self.coordinate] == 1:
-                if self.right is None:
-                    print("coordinat is = {}".format(self.coordinate))
-                    self.coordinate = randrange(8)
-                    print(1) 
-                    self.right=Tree(1,self.k)
-                    self.isLeaf=False
-                else:
-                    self.right.insertQ1(Vector)
-            else:
-                if self.left is None:
-                    print("coordinat is = {}".format(self.coordinate))
-                    self.coordinate = randrange(8)
-                    print(0)
-                    self.left=Tree(0,self.k)
-                    self.isLeaf=False
-                else:
-                    self.left.insertQ1(Vector)      
-               
-                # self.insert(Vector)
+    def insertA(self ,Vector):
+        if self.root is None:
+            print(Vector)
+            coordinate = randrange(8)
+            print(coordinate)
+            self.root= Node(coordinate, -1)
+        else:
+            print("root is not None")
+            self.insertQ1(self.root,Vector)
+
+    def insertQ1(self,cur_node,Vector):
             
-                # if self.tag == 0 :
-                #     if self.left:
-                #         self.left.insertQ1(Vector)
-                #         self.isLeaf=False
-                #     else:
-                #         self.left=Tree(0,self.k)
-                # else:
-                #     if self.right:
-                #         self.right.insertQ1(Vector)
-                #         self.isLeaf=False
-                #     else:
-                #         self.right=Tree(1,self.k)
-                
-                # if self.isLeaf:
-                #     self.counter +=1
-                #     if self.tag == Vector[8] :
-                #             self.matchTag +=1
-                #     else:
-                #             self.dontMatchTag +=1
+            if self.root is None:
+                print(Vector)
+                coordinate = randrange(8)
+                print(coordinate)
+                self.root= Node(coordinate, -1)
+            else:
+                print("root is not None")
+                self.insertQ1(self.root,Vector)
+
+            if  Vector[coordinate] == 0:
+                if cur_node.left is None:
+                    coordinate = randrange(8)
+                    cur_node.left = Node(coordinate,0)
+                    print (" new left node ")
+                else:
+                    print("left is not None")
+                    self.insertQ1(cur_node.left , Vector)
+            else:
+                if cur_node.right is None:
+                    coordinate = randrange(8)
+                    cur_node.right = Node(coordinate,1)
+                    print (" new right node ")
+                else:
+                    print("right is not None")
+                    self.insertQ1(cur_node.right , Vector)
+
+            
+      
+               
+
+
 
 tree = Tree(-1,3)
-vector = [[0 ,1 ,0 ,0 ,1 ,1, 0 ,0 ,1],[1 ,0 ,0 ,1 ,0 ,1, 1, 1 ,0] ,[1, 1, 1, 0, 0, 0 ,0, 0, 1]]
+root = tree.root
 
 
-for v in df:
-    for i in range(tree.k):
-        tree.insertQ1(v)
-print("The number of the matching vectors is {}\n".format(tree.matchTag))
+for i in range(tree.k):
+    for v in df:
+        tree.insertQ1(root,v)
+# print("The number of the notmatching vectors is {}\n".format(tree.dontMatchTag))
 
 # tree.printValues()
