@@ -1,83 +1,73 @@
-from typing import no_type_check
-import pandas
-from sklearn import tree
-from sklearn.tree import DecisionTreeClassifier
-import matplotlib.pyplot as plt
-import matplotlib.image as pltimg
+from random import  randrange
 
-df = pandas.read_csv("vectors.txt")
-
-
-from random import random, randrange
-
-class Node:
-    def __init__(self,coordinate,tag) :
-        self.left=None
-        self.right=None
-        self.tag=tag
-        self.isLeaf=True
-        self.counter=0
-        self.coordinate = coordinate
-        self.matchTag=0
-        self.dontMatchTag=0
+# class Node:
+#     def __init__(self,coordinate,tag) :
+#         self.left=None
+#         self.right=None
+#         self.tag=tag
+#         self.isLeaf=True
+#         self.counter=0
+#         self.coordinate = coordinate
+#         self.matchTag=0
+#         self.dontMatchTag=0
 
 class Tree:
+        def __init__(self):
+            self.left = None
+            self.right= None
+            self.tag=None
+            self.isLeaf=True
+            self.counter=0
+            self.coordinate = randrange(8) 
+            self.matchTag=0
+            self.dontMatchTag=0
 
-    def __init__(self,tag,k):
-            self.root = None
-            self.k=k
+        #  def _insert(self):
+        #      if 
 
-    def insertA(self ,Vector):
-        if self.root is None:
-            print(Vector)
-            coordinate = randrange(8)
+        def insertQ1A(self ,vector):
+            coordinate= self.coordinate
             print(coordinate)
-            self.root= Node(coordinate, -1)
-        else:
-            print("root is not None")
-            self.insertQ1(self.root,Vector)
-
-    def insertQ1(self,cur_node,Vector):
             
-            if self.root is None:
-                print(Vector)
-                coordinate = randrange(8)
-                print(coordinate)
-                self.root= Node(coordinate, -1)
-            else:
-                print("root is not None")
-                self.insertQ1(self.root,Vector)
+            print("vector[coordinate] = {}".format(vector[coordinate]))
+            if vector[coordinate] == 0:
+                print(vector)
+                if self.left is None:
+                    self.left = Tree()
+                    print("new left node")
+                else:
+                    self.isLeaf=False
+                    self.left.insertQ1A(vector)
+            elif vector[coordinate]==1:
+                print(vector)
+                if self.right is None:
+                    self.right=Tree()
+                    print("new right node")
+                else:
+                    self.isLeaf=False
+                    self.right.insertQ1A(vector)
+            
 
-            if  Vector[coordinate] == 0:
-                if cur_node.left is None:
-                    coordinate = randrange(8)
-                    cur_node.left = Node(coordinate,0)
-                    print (" new left node ")
-                else:
-                    print("left is not None")
-                    self.insertQ1(cur_node.left , Vector)
-            else:
-                if cur_node.right is None:
-                    coordinate = randrange(8)
-                    cur_node.right = Node(coordinate,1)
-                    print (" new right node ")
-                else:
-                    print("right is not None")
-                    self.insertQ1(cur_node.right , Vector)
+
+
 
             
+
       
                
 
+f = open("vectors.txt", "r")
+lines = f.read().splitlines() # List with stripped line-breaks
+f.close() # Close file
 
+# print(lines)
+tree = Tree()
 
-tree = Tree(-1,3)
-root = tree.root
-
-
-for i in range(tree.k):
-    for v in df:
-        tree.insertQ1(root,v)
+for v in lines:
+            line=v.split()
+            vector = [int(i) for i in line]
+            for j in range(3):
+                tree.insertQ1A(vector)
 # print("The number of the notmatching vectors is {}\n".format(tree.dontMatchTag))
 
 # tree.printValues()
