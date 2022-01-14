@@ -25,10 +25,7 @@ def Recursion(k, coordinate_num, vectors ,t):
     for i in range(coordinate_num):
         t=Tree(k)
         t.root.coordinate=i
-        # print("coooooooooooo", t.root.coordinate)
-
-        # print("gggggg",t1.root.coordinate)
-
+     
         for j in range(coordinate_num): # to get the best left and right node 
             if(j!=i):
                 t.root.left=Node()
@@ -88,13 +85,13 @@ def Recursion(k, coordinate_num, vectors ,t):
                     right.coordinate=j
                 # print("right matching = ", right.matchTag)
 
-        print("coordinate = ", t.root.coordinate)
-        print("t right = ", t.root.right.matchTag)
-        print("t left = ", t.root.left.matchTag)
-        print("t left coord = ", t.root.left.coordinate)
-        print("t right coord = ", t.root.right.coordinate)
-        print("t left counter = ", t.root.left.counter)
-        print("t right counter = ", t.root.right.counter)
+        # print("coordinate = ", t.root.coordinate)
+        # print("t right = ", t.root.right.matchTag)
+        # print("t left = ", t.root.left.matchTag)
+        # print("t left coord = ", t.root.left.coordinate)
+        # print("t right coord = ", t.root.right.coordinate)
+        # print("t left counter = ", t.root.left.counter)
+        # print("t right counter = ", t.root.right.counter)
 
 
 
