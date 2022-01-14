@@ -1,3 +1,4 @@
+from asyncio.windows_events import INFINITE
 from random import  randrange
 
 # class Node:
@@ -72,7 +73,21 @@ class Tree:
                                 self.dontMatchTag+=1   
                     print("matching vector = {}".format(self.matchTag))
                     print("Not matching vector = {}".format(self.dontMatchTag))
-                
+        def Recursion(k, coordinate_num):
+            t= Tree(1)
+            left=tree(0)
+            right=Tree(0)
+            min_err=INFINITE
+            for i in range(k):
+                b=Tree(0)
+                for j in range(k):
+                    b=Tree(0)
+                    b.left=Tree(1)
+                    b.left.coordinate=j+1
+
+                    b.right.coordinate=j+1
+
+
 
             
 
