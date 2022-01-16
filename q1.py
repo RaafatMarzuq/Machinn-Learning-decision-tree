@@ -127,13 +127,13 @@ def q2(k, coordinate_num, vectors ,t):
         count4=0
         for j in vectors:
             if (j[i]==0 and j[8]==1):
-                count1+=1
+                count1+=1  #left , vectors with tag 1
             elif (j[i]==0 and j[8]==0 ):
-                count2 +=1
+                count2 +=1 #left , vectors with tag 0
             if (j[i]==1 and j[8]==1):
-                count3+=1
+                count3+=1 # right, vectors with tag 1
             elif (j[i]==1 and j[8]==0 ):
-                count4 +=1
+                count4 +=1 # right with tag 0
         print ("coordinate = ", i," count1= ", count1," count2= ", count2," count3= ", count3," count4= ", count4 )
 
         p1=0
