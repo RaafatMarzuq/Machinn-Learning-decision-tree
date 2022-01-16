@@ -1,6 +1,6 @@
 from itertools import count
 from random import  randrange
-
+import math
 
 class Node:
     def __init__(self , isleaf = False, tag=1) :
@@ -25,12 +25,9 @@ def Recursion(k, coordinate_num, vectors ,t):
     for i in range(coordinate_num):
         t=Tree(k)
         t.root.coordinate=i
-        # print("coooooooooooo", t.root.coordinate)
-
-        # print("gggggg",t1.root.coordinate)
 
         for j in range(coordinate_num): # to get the best left and right node 
-            if(j!=i):
+            # if(j!=i):
                 t.root.left=Node()
                 left=t.root.left
                 count1=0 
@@ -88,13 +85,13 @@ def Recursion(k, coordinate_num, vectors ,t):
                     right.coordinate=j
                 # print("right matching = ", right.matchTag)
 
-        print("coordinate = ", t.root.coordinate)
-        print("t right = ", t.root.right.matchTag)
-        print("t left = ", t.root.left.matchTag)
-        print("t left coord = ", t.root.left.coordinate)
-        print("t right coord = ", t.root.right.coordinate)
-        print("t left counter = ", t.root.left.counter)
-        print("t right counter = ", t.root.right.counter)
+                print("coordinate = ", t.root.coordinate)
+                print("t right = ", t.root.right.matchTag)
+                print("t left = ", t.root.left.matchTag)
+                print("t left coord = ", t.root.left.coordinate)
+                print("t right coord = ", t.root.right.coordinate)
+                print("t left counter = ", t.root.left.counter)
+                print("t right counter = ", t.root.right.counter)
 
 
 
@@ -126,7 +123,7 @@ if __name__ == '__main__':
         all_vectors.append(single_vector)
     t=Tree(3)
 
-    # t=Recursion(3,8,all_vectors ,t)
+    t=Recursion(3,8,all_vectors ,t)
     # print ("coordinate",t.root.coordinate)
     # print ("coordinate",t.root.right.coordinate)
     # print ("coordinate",t.root.left.coordinate)
