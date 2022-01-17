@@ -20,8 +20,7 @@ class Tree:
             
         def getLeaves(root):
                 result = []
-                if root.left:
-                    
+                if root.left: 
                     result.extend(root.left.getLeaves())
                 if root.right:
                     result.extend(root.right.getLeaves())
@@ -30,7 +29,6 @@ class Tree:
                         root.tag = 1
                     else:
                         root.tag=0
-
                     result = [root]
                 return result  
 
