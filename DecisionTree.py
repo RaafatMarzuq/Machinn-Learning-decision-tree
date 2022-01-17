@@ -173,7 +173,7 @@ class Tree:
             # Two children.
             left, n, p, x = self.left._display_aux()
             right, m, q, y = self.right._display_aux()
-            s = '%s' % self.coordinate
+            s = '%s' % self.coordinate 
             u = len(s)
             first_line = (x + 1) * ' ' + (n - x - 1) * '_' + s + y * '_' + (m - y) * ' '
             second_line = x * ' ' + '/' + (n - x - 1 + u + y) * ' ' + '\\' + (m - y - 1) * ' '
